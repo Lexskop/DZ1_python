@@ -2,3 +2,12 @@
 # Пример:
 # A (3,6); B (2,1) -> 5.09
 # A (7,-5); B (1,-1) -> 7.21
+
+def user_another_try():
+    user_choice = input('Вы хотите продолжить работу с программой? Да - Y, Нет - N - > ')
+    while user_choice.lower() != 'y' and user_choice.lower() != 'n':
+        user_choice = input('Пожалуйста, введите верное решение. Если хотите продолжить работу - введите Y, если желаете закрыть программу - введите N -> ')
+    if user_choice.lower() == 'y':
+        calc()
+    else:
+        print('Bye!')
