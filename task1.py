@@ -6,27 +6,35 @@
 # 1 -> нет
 
 def calc():
-    day_of_week = input('Введите число, соответствующее дню недели -> ')
-    while day_of_week.isdigit() == False:
-        print('Вы ошиблись и ввели "не число"')
-        day_of_week = input('Введите число, соответствующее дню недели -> ')
-    day_of_week = int(day_of_week)
-    if bool(day_of_week in range(1, 6)) == True:
-        print('Этот день недели не является выходным')
-    elif bool(day_of_week in range(6, 8)) == True:
-        print('Этот день недели является выходным')
-    else:
-        print('Введите правильное число дня недели')
+    user_number = input('Введите число, соответствующее дню недели -> ')
+    if user_number.lower() == 'x':
+        print('Bye!')
+        return
+    while user_number.isdigit() == False or bool(int(user_number) in range(1, 8)) == False:
+        if user_number.isdigit() == False:
+            print('Вы ошиблись и ввели "не число"!')
+        if user_number.isdigit() == True and bool(int(user_number) in range(1, 8)) == False:
+            print('Вы ввели число, не соответствующее дню недели!')
+        user_number = input('Введите число, соответствующее дню недели -> ')
+        if user_number.lower() == 'x':
+            print('Bye!')
+            return
+    user_number = int(user_number)
+    days_of_the_week = ['Понедельник!','Вторник!','Среда!','Четверг!','Пятница!','Суббота!','Воскресенье!']
+    if bool(user_number in range(1, 6)) == True:
+        print('Выбранный день недели ->','\033[33m {}'.format(days_of_the_week[user_number-1]),'\033[0m {}'.format('Этот день недели'),'\033[31m {}'.format('не является'),'\033[0m {}'.format('выходным!'))
+    elif bool(user_number in range(6, 8)) == True:
+        print('Ваш день недели ->','\033[33m {}'.format(days_of_the_week[user_number-1]),'\033[0m {}'.format('Этот день недели'),'\033[34m {}'.format('является'),'\033[0m {}'.format('выходным!'))
     user_another_try()
 
 def user_another_try():
     user_choice = input('Вы хотите продолжить работу с программой? Да - Y, Нет - N - > ')
-    while user_choice.lower() != 'y' and user_choice.lower() != 'n':
-        user_choice = input('Пожалуйста, введите верное решение. Если хотите продолжить работу - введите Y, если желаете закрыть программу - введите N -> ')
+    while user_choice.lower() != 'y' and user_choice.lower() != 'n' and user_choice.lower() != 'x':
+        user_choice = input('Пожалуйста, введите верное решение. Если хотите продолжить работу - введите Y, если желаете закрыть программу - введите N или X -> ')
     if user_choice.lower() == 'y':
         calc()
     else:
         print('Bye!')
 
-print('Приветствую! Эта программа покажет, является ли выходным днем недели введенное Вами число, которое должно соответствовать дню недели!')
+print('Приветствую! Эта программа покажет, является ли выходным днем недели введенное Вами число, которое должно соответствовать дню недели! Для выхода из программы - введите X')
 calc()
